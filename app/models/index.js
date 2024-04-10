@@ -21,30 +21,35 @@ const db = {};
 db.Datatype = Datatype;
 db.sequelize = sequelize;
 
-db.employee = require("./employee.model")(sequelize, Datatype);
-db.setting = require("./setting.model")(sequelize, Datatype);
-db.company = require("./company.model")(sequelize, Datatype);
-db.project = require("./project.model")(sequelize, Datatype);
-db.employee_project = require("./employee_project.model")(sequelize, Datatype);
+db.Login = require("./mLogin")(sequelize, Datatype);
+db.Register = require("./mRegister")(sequelize, Datatype);
+db.Reservation = require("./mReservation")(sequelize, Datatype);
+db.Room = require("./mRoom")(sequelize, Datatype);
 
 //One to One relation
-db.employee.hasOne(db.setting, {
+db.Register.hasOne(db.Login, {
     onDelete: 'CASCADE'
 })
-db.setting.belongsTo(db.employee)
-
-//One to Many relation 
-db.company.hasMany(db.employee,{
-    onDelete: 'CASCADE'
-})
-db.employee.belongsTo(db.company)
+db.Login.belongsTo(db.Register)
 
 //Many to Many 
-db.project.belongsToMany(db.employee,{
-    through: "Employee_project"
+db.Reservation.belongsToMany(db.Room,{
+    through: "Reservations"
 })
-db.employee.belongsToMany(db.project,{
-    through: "Employee_project"
+db.Reservation.belongsToMany(db.Register,{
+    through: "Reservations"
+})
+db.Room.belongsToMany(db.Reservation,{
+    through: "Reservations"
+})
+db.Room.belongsToMany(db.Register,{
+    through: "Reservations"
+})
+db.Register.belongsToMany(db.Reservation,{
+    through: "Reservations"
+})
+db.Register.belongsToMany(db.Room,{
+    through: "Reservations"
 })
 
 module.exports = db
