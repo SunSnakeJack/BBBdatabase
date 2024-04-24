@@ -1,0 +1,39 @@
+// db.Room.belongsToMany(db.Booking, {
+//     through: "booking", // ตารางที่เชื่อมโยง Room และ Register
+//     foreignKey: 'RoomNo', // ชื่อคอลัมน์ที่เกี่ยวข้องกับ Room ในตาราง booking_room_register
+//     otherKey: 'MemberID' // ชื่อคอลัมน์ที่เกี่ยวข้องกับ Register ในตาราง booking_room_register
+// });
+// db.Register.belongsToMany(db.Booking, {
+//     through: "booking", // ตารางที่เชื่อมโยง Room และ Register
+//     foreignKey: 'MemberID', // ชื่อคอลัมน์ที่เกี่ยวข้องกับ Register ในตาราง booking_room_register
+//     otherKey: 'RoomNo' // ชื่อคอลัมน์ที่เกี่ยวข้องกับ Room ในตาราง booking_room_register
+// });
+
+
+// db.Booking.belongsToMany(db.Room,{
+//     through: "booking"
+// })
+// db.Booking.belongsToMany(db.Register,{
+//     through: "booking"
+// })
+// db.Room.belongsToMany(db.Booking,{
+//     through: "booking"
+// })
+// // db.Room.belongsToMany(db.Register,{
+// //     through: "booking"
+// // })
+// db.Register.belongsToMany(db.Booking,{
+//     through: "booking"
+// })
+// // db.Register.belongsToMany(db.Room,{
+// //     through: "booking"
+// // })
+
+
+// // db.Register.hasMany(db.Room, {
+// //     onDelete: 'CASCADE',
+// // });
+// // db.Room.belongsTo(db.Register);
+
+// db.Register.belongsToMany(db.Room, { through: 'booking' });
+// db.Room.belongsToMany(db.Register, { through: 'booking' });
